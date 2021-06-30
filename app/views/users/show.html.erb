@@ -1,7 +1,8 @@
 <h1>User details</h1>
-
 <% if @user %>
-  <div class="card card-header results-block">
+<div class="row">
+  <div class="col-sm-9 mt-3">
+  <div class="card card-header">
     <table class="col-md-12">
       <tbody>
          <tr>
@@ -9,7 +10,7 @@
            <td><strong>Email: </strong> <%= @user.email %></td>
            <td>
              <% if current_user.not_friend_with?(@user.id) %>
-               <%= link_to 'Follow', friendships_path(friend: @user), class: "btn btn-sm btn-success ml-2", method: :post %></td>
+               <%= link_to 'Follow', friendships_path(friend: @user), class: "btn btn-sm btn-primary ml-2", method: :post %></td>
              <% else %>
                <span class="badge badge-secondary ml-2">You are friends</span>
              <% end %>
@@ -17,10 +18,12 @@
        </tbody>
      </table>
   </div>
+  </div>
+  </div>
 <% end %>
 
 <% if !@tracked_stocks.empty? %>
     <%= render "stocks/list" %>
   <% else %>
-    <p class="lead">This user is not tracking any stocks</p>
+    <p class="lead mt-3">This user is not tracking any stocks. <%= link_to "Go back", my_friends_path %></p>
 <% end %>

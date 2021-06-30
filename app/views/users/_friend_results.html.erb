@@ -3,24 +3,28 @@
 </div>
 
  <% if @friends %>
-   <div class="card card-header results-block">
-     <table class="col-md-12">
-       <tbody>
-         <% @friends.each do |friend| %>
-          <tr>
-            <td><strong>Name: </strong> <%= friend.full_name %></td>
-            <td><strong>Email: </strong> <%= friend.email %></td>
-            <td>
-              <%= link_to "View Profile", user_path(friend), class: "btn btn-sm btn-warning" %>
+ <div class="row">
+   <div class="col-sm-9">
+     <div class="card card-header">
+       <table class="col-md-12">
+         <tbody>
+           <% @friends.each do |friend| %>
+            <tr>
+              <td><strong>Name: </strong> <%= friend.full_name %></td>
+              <td><strong>Email: </strong> <%= friend.email %></td>
+              <td>
+                <%= link_to "View Profile", user_path(friend), class: "btn btn-sm btn-info" %>
 
-              <% if current_user.not_friend_with?(friend.id) %>
-                <%= link_to 'Follow', friendships_path(friend: friend), class: "btn btn-sm btn-success ml-2", method: :post %></td>
-              <% else %>
-                <span class="badge badge-secondary ml-2">You are friends</span>
-              <% end %>
-          </tr>
-          <% end %>
-        </tbody>
+                <% if current_user.not_friend_with?(friend.id) %>
+                  <%= link_to 'Follow', friendships_path(friend: friend), class: "btn btn-sm btn-primary ml-2", method: :post %></td>
+                <% else %>
+                  <span class="badge badge-secondary ml-2">You are friends</span>
+                <% end %>
+            </tr>
+            <% end %>
+          </tbody>
       </table>
    </div>
- <% end %>
+ </div>
+</div>
+<% end %>
