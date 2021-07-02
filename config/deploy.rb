@@ -1,8 +1,14 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :puma_conf, "/var/www/finance-tracker/shared/config/puma.rb"
+set :application, "finance-tracker"
+set :repo_url, "git@github.com:shumylosasha/stock-tracker.git"
+set :deploy_to, '/home/ubuntu/finance-tracker'
+set :use_sudo, true
+set :branch, 'main'
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_files, %w{config/master.key}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
